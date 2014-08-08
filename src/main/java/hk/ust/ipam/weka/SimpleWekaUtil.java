@@ -6,10 +6,10 @@ import weka.core.converters.ConverterUtils.DataSource;
 /**
  * Created by jeehoonyoo on 8/8/14.
  */
-public class WekaUtil {
-    public static Instances readData(String filename)
+public class SimpleWekaUtil {
+    public static Instances readData(String filename, int idxClass)
     {
-        DataSource source = null;
+        DataSource source;
         Instances data = null;
 
         try {
@@ -22,11 +22,15 @@ public class WekaUtil {
 
         if (data == null)
         {
-            System.out.println("Cannot load file!");
+            System.out.println("Cannot load data file!");
             return null;
         }
 
-        data.setClassIndex(data.numAttributes() - 1);
+        if (idxClass < 0)
+            idxClass = data.numAttributes() - 1;
+
+        data.setClassIndex(idxClass);
+
         return data;
     }
 }
