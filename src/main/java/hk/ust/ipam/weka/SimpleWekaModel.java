@@ -3,6 +3,7 @@ package hk.ust.ipam.weka;
 import org.apache.log4j.Logger;
 
 import weka.classifiers.bayes.NaiveBayes;
+import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.J48;
 import weka.classifiers.trees.RandomForest;
@@ -44,7 +45,7 @@ public class SimpleWekaModel {
      * @return
      */
     public boolean trainModel(Instances trainingData, int[] removingIdx, boolean bSetClassIdxAuto) {
-        this.removeIdx (removingIdx);
+        this.removeIdx(removingIdx);
 
         if (trainingData.classIndex() < 0) {
             if (bSetClassIdxAuto == true)
@@ -157,10 +158,9 @@ public class SimpleWekaModel {
                 idxHighest = i;
         }
 
-        return new SimpleWekaResult(idxHighest, instance.classAttribute().value(idxHighest), result[idxHighest]);
+        return new SimpleWekaResult(idxHighest, (int)instance.classValue(),
+                instance.classAttribute().value(idxHighest), result[idxHighest]);
     }
-
-
 
     /**
      *
