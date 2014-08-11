@@ -25,4 +25,13 @@ public class SimpleWekaResult {
     public double getScore() {
         return score;
     }
+
+    @Override
+    public String toString() {
+        return "SimpleWekaResult{" +
+                "attrIdx=" + attrIdx +
+                ", attrName='" + attrName + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }

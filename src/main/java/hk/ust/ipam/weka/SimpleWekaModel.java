@@ -21,23 +21,31 @@ public class SimpleWekaModel {
 
     /**
      *
-     * @param classifierName
-     * @param removingIdx
      */
-    public SimpleWekaModel(ClassifierName classifierName, int[] removingIdx) {
-        this.classifier = new FilteredClassifier();
+    public SimpleWekaModel(String modelPath) {
+        if (this.loadModel(modelPath) == false)
+            this.log.error("cannot load the model");
+    }
 
-        removeIdx (removingIdx);
-        setClassifier(classifierName);
+    /**
+     *
+     * @param classifierName
+     */
+    public SimpleWekaModel(ClassifierName classifierName) {
+        this.classifier = new FilteredClassifier();
+        this.setClassifier(classifierName);
     }
 
     /**
      *
      * @param trainingData
+     * @param removingIdx
      * @param bSetClassIdxAuto
      * @return
      */
-    public boolean trainModel(Instances trainingData, boolean bSetClassIdxAuto) {
+    public boolean trainModel(Instances trainingData, int[] removingIdx, boolean bSetClassIdxAuto) {
+        this.removeIdx (removingIdx);
+
         if (trainingData.classIndex() < 0) {
             if (bSetClassIdxAuto == true)
                 trainingData.setClassIndex(trainingData.numAttributes() - 1);
@@ -49,7 +57,7 @@ public class SimpleWekaModel {
         }
 
         try {
-            classifier.buildClassifier(trainingData);
+            this.classifier.buildClassifier(trainingData);
         } catch (Exception e) {
             this.log.error("fail to build the classifier:", e);
             return false;
@@ -164,7 +172,7 @@ public class SimpleWekaModel {
 
         Remove rm = new Remove();
         rm.setAttributeIndicesArray(removingIdx);
-        classifier.setFilter(rm);
+        this.classifier.setFilter(rm);
     }
 
     /**
@@ -173,10 +181,10 @@ public class SimpleWekaModel {
      */
     private void setClassifier(ClassifierName classifierName) {
         if (classifierName == ClassifierName.RANDOM_FOREST)
-            classifier.setClassifier(new RandomForest());
+            this.classifier.setClassifier(new RandomForest());
         else if (classifierName == ClassifierName.J48)
-            classifier.setClassifier(new J48());
+            this.classifier.setClassifier(new J48());
         else if (classifierName == ClassifierName.NAIVE_BAYES)
-            classifier.setClassifier(new NaiveBayes());
+            this.classifier.setClassifier(new NaiveBayes());
     }
 }
