@@ -22,11 +22,28 @@ public class SimpleWekaResultTable {
      */
     public SimpleWekaResultTable(Instances instances) {
         int noClasses = instances.get(0).numClasses();
+        initResult(noClasses);
+    }
 
+    public SimpleWekaResultTable(int noClasses) {
+        initResult(noClasses);
+    }
+
+    /**
+     *
+     * @param noClasses
+     */
+    public void initResult(int noClasses) {
+        this.resultTable = null;
         this.resultTable = new int[noClasses][noClasses];
 
+        this.precision = null;
         this.precision = new double[noClasses];
+
+        this.recall = null;
         this.recall = new double[noClasses];
+
+        this.fmeasure = null;
         this.fmeasure = new double[noClasses];
     }
 

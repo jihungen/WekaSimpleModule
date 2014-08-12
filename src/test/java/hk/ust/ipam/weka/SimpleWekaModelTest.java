@@ -20,7 +20,7 @@ public class SimpleWekaModelTest {
     public void trainingModelTest() {
         Instances data = SimpleWekaUtil.readData(IRIS_ARFF, -1);
 
-        SimpleWekaModel model = new SimpleWekaModel(ClassifierName.RANDOM_FOREST);
+        SimpleWekaModel model = new SimpleWekaModel(SimpleWekaClassifier.ClassifierName.RANDOM_FOREST);
         model.trainModel(data, null, true);
 
         model.saveModel(IRIS_MODEL);

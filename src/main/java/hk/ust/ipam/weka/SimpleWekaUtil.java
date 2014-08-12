@@ -2,7 +2,6 @@ package hk.ust.ipam.weka;
 
 import org.apache.log4j.Logger;
 import weka.core.Instances;
-import weka.core.converters.ConverterUtils;
 import weka.core.converters.ConverterUtils.DataSource;
 
 import java.io.InputStream;

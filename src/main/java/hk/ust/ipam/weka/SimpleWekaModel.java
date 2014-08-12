@@ -2,11 +2,7 @@ package hk.ust.ipam.weka;
 
 import org.apache.log4j.Logger;
 
-import weka.classifiers.bayes.NaiveBayes;
-import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.meta.FilteredClassifier;
-import weka.classifiers.trees.J48;
-import weka.classifiers.trees.RandomForest;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.filters.unsupervised.attribute.Remove;
@@ -14,45 +10,55 @@ import weka.filters.unsupervised.attribute.Remove;
 import java.io.*;
 
 /**
+ * Manages Weak Classifier. It trains and tests the instances, and saves and loads the trained classifier.
  * Created by jeehoonyoo on 8/8/14.
  */
 public class SimpleWekaModel {
+    /**
+     * Weka classifier will not be exposed to the outside.
+     */
     private FilteredClassifier classifier = null;
+
+    /**
+     * Logger
+     */
     private static Logger log = Logger.getLogger(SimpleWekaModel.class.getName());
 
     /**
-     *
+     * Loads model from the file.
+     * @param modelPath the path of model file.
      */
     public SimpleWekaModel(String modelPath) {
-        if (this.loadModel(modelPath) == false)
-            this.log.error("cannot load the model");
+        if (!this.loadModel(modelPath))
+            log.error("cannot load the model");
     }
 
     /**
-     *
-     * @param classifierName
+     * Sets the type of classifier
+     * @param classifierName the name of classifier. Please check available classifier in SimpleWekaClassifier class.
      */
-    public SimpleWekaModel(ClassifierName classifierName) {
+    public SimpleWekaModel(SimpleWekaClassifier.ClassifierName classifierName) {
         this.classifier = new FilteredClassifier();
         this.setClassifier(classifierName);
     }
 
     /**
-     *
-     * @param trainingData
-     * @param removingIdx
-     * @param bSetClassIdxAuto
-     * @return
+     * Trains the model with given data, trainingData. Also, can exclude some attributes in training process.
+     * @param trainingData  training data
+     * @param removingIdx   attributes will be excluded in training
+     * @param bSetClassIdxAuto  if a class index is not set, it automatically sets the class index as the last attribute (true).
+     *                          Otherwise, cannot train the model (false).
+     * @return  whether trains the model successfully or not.
      */
     public boolean trainModel(Instances trainingData, int[] removingIdx, boolean bSetClassIdxAuto) {
         this.removeIdx(removingIdx);
 
         if (trainingData.classIndex() < 0) {
-            if (bSetClassIdxAuto == true)
+            if (bSetClassIdxAuto)
                 trainingData.setClassIndex(trainingData.numAttributes() - 1);
             else
             {
-                this.log.error("cannot identify the class index of training data");
+                log.error("cannot identify the class index of training data");
                 return false;
             }
         }
@@ -60,7 +66,7 @@ public class SimpleWekaModel {
         try {
             this.classifier.buildClassifier(trainingData);
         } catch (Exception e) {
-            this.log.error("fail to build the classifier:", e);
+            log.error("fail to build the classifier:", e);
             return false;
         }
 
@@ -68,9 +74,9 @@ public class SimpleWekaModel {
     }
 
     /**
-     *
-     * @param fileName
-     * @return
+     * Saves the current model to the file
+     * @param fileName  the path of file to be saved
+     * @return  whether saves the model successfully or not.
      */
     public boolean saveModel(String fileName) {
         try {
@@ -79,10 +85,10 @@ public class SimpleWekaModel {
             oos.writeObject(this.classifier);
             oos.close();
         } catch (FileNotFoundException e) {
-            this.log.error("fail to find file:", e);
+            log.error("fail to find file:", e);
             return false;
         } catch (IOException e) {
-            this.log.error("cannot write the model:", e);
+            log.error("cannot write the model:", e);
             return false;
         }
 
@@ -90,9 +96,9 @@ public class SimpleWekaModel {
     }
 
     /**
-     *
-     * @param fileName
-     * @return
+     * Loads the model from the file
+     * @param fileName  the path of model file
+     * @return  whether loads the model successfully or not.
      */
     public boolean loadModel(String fileName) {
 
@@ -102,13 +108,13 @@ public class SimpleWekaModel {
             this.classifier = (FilteredClassifier) ois.readObject();
             ois.close();
         } catch (FileNotFoundException e) {
-            this.log.error("fail to find file:", e);
+            log.error("fail to find file:", e);
             return false;
         } catch (IOException e) {
-            this.log.error("cannot read the model:", e);
+            log.error("cannot read the model:", e);
             return false;
         } catch (ClassNotFoundException e) {
-            this.log.error("cannot load the model:", e);
+            log.error("cannot load the model:", e);
             return false;
         }
 
@@ -116,9 +122,9 @@ public class SimpleWekaModel {
     }
 
     /**
-     *
-     * @param instance
-     * @return
+     * Classifies an instance by given model
+     * @param instance  The instance to be classified
+     * @return  The scores of all classes
      */
     public double[] classifyInstance(Instance instance) {
         try {
@@ -130,10 +136,10 @@ public class SimpleWekaModel {
     }
 
     /**
-     *
-     * @param instance
-     * @param idxInterest
-     * @return
+     * Classifies an instance by given model, but returns the score for only interesting class
+     * @param instance  The instance to be classified
+     * @param idxInterest   The index of interesting class
+     * @return  The score of only interesting class
      */
     public double classifyInstance(Instance instance, int idxInterest) {
         double[] result = classifyInstance(instance);
@@ -144,9 +150,9 @@ public class SimpleWekaModel {
     }
 
     /**
-     *
-     * @param instance
-     * @return
+     * Classifies an instance by given model, but SimpleWekaResult for the class with the highest score
+     * @param instance  The instance to be classified
+     * @return  SimpleWekaResult object. Please check SimpleWekaResult class
      */
     public SimpleWekaResult classifyInstanceHighest(Instance instance) {
         double[] result = classifyInstance(instance);
@@ -163,8 +169,8 @@ public class SimpleWekaModel {
     }
 
     /**
-     *
-     * @param removingIdx
+     * Excludes some attributes in training
+     * @param removingIdx   The array of indexes of attributes to be excluded
      */
     private void removeIdx(int[] removingIdx) {
         if (removingIdx == null)
@@ -176,15 +182,10 @@ public class SimpleWekaModel {
     }
 
     /**
-     *
-     * @param classifierName
+     * Set classifiers by given classifier name
+     * @param classifierName    Classifier name to be set to this model
      */
-    private void setClassifier(ClassifierName classifierName) {
-        if (classifierName == ClassifierName.RANDOM_FOREST)
-            this.classifier.setClassifier(new RandomForest());
-        else if (classifierName == ClassifierName.J48)
-            this.classifier.setClassifier(new J48());
-        else if (classifierName == ClassifierName.NAIVE_BAYES)
-            this.classifier.setClassifier(new NaiveBayes());
+    private void setClassifier(SimpleWekaClassifier.ClassifierName classifierName) {
+        this.classifier.setClassifier(SimpleWekaClassifier.getClassifier(classifierName));
     }
 }
