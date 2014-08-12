@@ -1,4 +1,4 @@
-package hk.ust.ipam.weka;
+package hk.ust.ipam.weka.result;
 
 import weka.core.Instance;
 import weka.core.Instances;
@@ -6,32 +6,53 @@ import weka.core.Instances;
 import java.util.Arrays;
 
 /**
+ * Weka library computes the statistical results, but provides them in specific ways.
+ * For example, I want to test a trained classifier on some dataset.
+ * But, Weka does not allow it. Weka provides only one method for it by Evaluation class.
  * Created by jeehoonyoo on 11/8/14.
  */
 public class SimpleWekaResultTable {
 
+    /**
+     * Result table stores the count of FP, FN, TP and TN for all the classes
+     */
     private int[][] resultTable;
 
+    /**
+     * Precision for all the classes
+     */
     private double[] precision;
+
+    /**
+     * Recall for all the classes
+     */
     private double[] recall;
+
+    /**
+     * F-measure for all the classes
+     */
     private double[] fmeasure;
 
     /**
-     *
-     * @param instances
+     * Gets the number of classes by Instances object, then initializes the member variables
+     * @param instances Only to get the number of classes
      */
     public SimpleWekaResultTable(Instances instances) {
         int noClasses = instances.get(0).numClasses();
         initResult(noClasses);
     }
 
+    /**
+     * Initializes the member variables by the number of classes
+     * @param noClasses The number of classes
+     */
     public SimpleWekaResultTable(int noClasses) {
         initResult(noClasses);
     }
 
     /**
-     *
-     * @param noClasses
+     * Initializes the member variables by the number of classes
+     * @param noClasses The number of classes
      */
     public void initResult(int noClasses) {
         this.resultTable = null;
@@ -48,9 +69,9 @@ public class SimpleWekaResultTable {
     }
 
     /**
-     *
-     * @param instance
-     * @param result
+     * Adds one result to the result table
+     * @param instance  The target instance classified
+     * @param result    SimpleWekaResult object for given instance
      */
     public void addResult(Instance instance, SimpleWekaResult result) {
         int idxActual = (int)instance.classValue();
@@ -60,7 +81,7 @@ public class SimpleWekaResultTable {
     }
 
     /**
-     *
+     * Compute the statistical results
      */
     public void computeResult() {
         int noClasses = this.precision.length;
@@ -78,9 +99,9 @@ public class SimpleWekaResultTable {
     }
 
     /**
-     *
-     * @param idxActual
-     * @return
+     * Calculates FP (False Positive)
+     * @param idxActual The target index of class
+     * @return  FP (False Positive) for a given class
      */
     private int calculateFP(int idxActual) {
         int fp = 0;
@@ -95,9 +116,9 @@ public class SimpleWekaResultTable {
     }
 
     /**
-     *
-     * @param idxActual
-     * @return
+     * Calculates FN (False Negative)
+     * @param idxActual The target index of class
+     * @return  FN (False Negative) for a given class
      */
     private int calculateFN(int idxActual) {
         int fn = 0;
@@ -112,32 +133,32 @@ public class SimpleWekaResultTable {
     }
 
     /**
-     *
-     * @return
+     * Gets precision
+     * @return  precision
      */
     public double[] getPrecision() {
         return precision;
     }
 
     /**
-     *
-     * @return
+     * Gets recall
+     * @return  recall
      */
     public double[] getRecall() {
         return recall;
     }
 
     /**
-     *
-     * @return
+     * Gets F-measure
+     * @return  fmeasure
      */
     public double[] getFmeasure() {
         return fmeasure;
     }
 
     /**
-     *
-     * @return
+     * Automatically generated toString method
+     * @return  The values of all the members
      */
     @Override
     public String toString() {

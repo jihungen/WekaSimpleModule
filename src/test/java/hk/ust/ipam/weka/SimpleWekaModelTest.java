@@ -1,20 +1,21 @@
 package hk.ust.ipam.weka;
 
+import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
+import hk.ust.ipam.weka.model.SimpleWekaModel;
+import hk.ust.ipam.weka.result.SimpleWekaResult;
+import hk.ust.ipam.weka.result.SimpleWekaResultTable;
+import hk.ust.ipam.weka.util.SimpleWekaUtil;
 import org.junit.Test;
-import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instance;
 import weka.core.Instances;
 
 /**
+ * Sample codes for how to use SimpleWekaModel class
  * Created by jeehoonyoo on 8/8/14.
  */
 public class SimpleWekaModelTest {
-    public static String CONTACT_LENSES_ARFF    = "src/test/resources/contactLenses.arff";
-    public static String CONTACT_LENSES_MODEL    = "src/test/resources/contactLenses.model";
-
     public static String IRIS_ARFF    = "src/test/resources/iris.arff";
     public static String IRIS_MODEL    = "src/test/resources/iris.model";
-
 
     @Test
     public void trainingModelTest() {

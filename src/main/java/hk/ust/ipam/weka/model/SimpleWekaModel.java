@@ -1,5 +1,7 @@
-package hk.ust.ipam.weka;
+package hk.ust.ipam.weka.model;
 
+import hk.ust.ipam.weka.result.SimpleWekaResult;
+import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
 import org.apache.log4j.Logger;
 
 import weka.classifiers.meta.FilteredClassifier;
@@ -130,7 +132,7 @@ public class SimpleWekaModel {
         try {
             return this.classifier.distributionForInstance(instance);
         } catch (Exception e) {
-            this.log.error("cannot classify the given instance:", e);
+            log.error("cannot classify the given instance:", e);
             return null;
         }
     }

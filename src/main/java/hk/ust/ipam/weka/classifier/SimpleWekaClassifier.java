@@ -1,4 +1,4 @@
-package hk.ust.ipam.weka;
+package hk.ust.ipam.weka.classifier;
 
 import weka.classifiers.Classifier;
 import weka.classifiers.bayes.NaiveBayes;
