@@ -1,7 +1,8 @@
 package hk.ust.ipam.weka.model;
 
-import hk.ust.ipam.weka.result.SimpleWekaResult;
+import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
+import hk.ust.ipam.weka.result.SimpleWekaCEResult;
 import org.apache.log4j.Logger;
 
 import weka.classifiers.meta.FilteredClassifier;
@@ -48,22 +49,13 @@ public class SimpleWekaModel {
      * Trains the model with given data, trainingData. Also, can exclude some attributes in training process.
      * @param trainingData  training data
      * @param removingIdx   attributes will be excluded in training
-     * @param bSetClassIdxAuto  if a class index is not set, it automatically sets the class index as the last attribute (true).
-     *                          Otherwise, cannot train the model (false).
      * @return  whether trains the model successfully or not.
      */
-    public boolean trainModel(Instances trainingData, int[] removingIdx, boolean bSetClassIdxAuto) {
+    public boolean trainModel(Instances trainingData, int[] removingIdx) {
         this.removeIdx(removingIdx);
 
-        if (trainingData.classIndex() < 0) {
-            if (bSetClassIdxAuto)
-                trainingData.setClassIndex(trainingData.numAttributes() - 1);
-            else
-            {
-                log.error("cannot identify the class index of training data");
-                return false;
-            }
-        }
+        if (trainingData.classIndex() < 0)
+            trainingData.setClassIndex(trainingData.numAttributes() - 1);
 
         try {
             this.classifier.buildClassifier(trainingData);
@@ -128,7 +120,7 @@ public class SimpleWekaModel {
      * @param instance  The instance to be classified
      * @return  The scores of all classes
      */
-    public double[] classifyInstance(Instance instance) {
+    public double[] classifyInstanceScores(Instance instance) {
         try {
             return this.classifier.distributionForInstance(instance);
         } catch (Exception e) {
@@ -144,30 +136,54 @@ public class SimpleWekaModel {
      * @return  The score of only interesting class
      */
     public double classifyInstance(Instance instance, int idxInterest) {
-        double[] result = classifyInstance(instance);
-        if (idxInterest < 0 || idxInterest >= result.length)
+        double[] score = classifyInstanceScores(instance);
+        if (idxInterest < 0 || idxInterest >= score.length)
             return -1;
 
-        return result[idxInterest];
+        return score[idxInterest];
     }
 
     /**
-     * Classifies an instance by given model, but SimpleWekaResult for the class with the highest score
+     * Classifies an instance by given model, but SimpleWekaBinaryResult for the class with the highest score
      * @param instance  The instance to be classified
-     * @return  SimpleWekaResult object. Please check SimpleWekaResult class
+     * @return  SimpleWekaBinaryResult object. Please check SimpleWekaBinaryResult class
      */
-    public SimpleWekaResult classifyInstanceHighest(Instance instance) {
-        double[] result = classifyInstance(instance);
-        int idxHighest = 0;
+    public SimpleWekaBinaryResult classifyInstance(Instance instance) {
+        double[] score = classifyInstanceScores(instance);
+        return getResult(instance, score);
+    }
 
-        for (int i = 1; i < result.length; i++)
+    /**
+     *
+     * @param instance
+     * @param score
+     * @param idxInterest
+     * @return
+     */
+    public static SimpleWekaCEResult getResult(Instance instance, double[] score, int idxInterest) {
+        if (idxInterest < 0 || idxInterest >= score.length)
+            return null;
+
+        return new SimpleWekaCEResult(instance, score[idxInterest]);
+    }
+
+    /**
+     *
+     * @param instance
+     * @param score
+     * @return
+     */
+    public static SimpleWekaBinaryResult getResult(Instance instance, double[] score) {
+        int idxClassified = 0;
+
+        for (int i = 1; i < score.length; i++)
         {
-            if (result[i] > result[idxHighest])
-                idxHighest = i;
+            if (score[i] > score[idxClassified])
+                idxClassified = i;
         }
 
-        return new SimpleWekaResult(idxHighest, (int)instance.classValue(),
-                instance.classAttribute().value(idxHighest), result[idxHighest]);
+        int idxActual = (int)instance.classValue();
+        return new SimpleWekaBinaryResult(idxClassified, idxActual, score[idxClassified], score[idxActual]);
     }
 
     /**

@@ -2,8 +2,8 @@ package hk.ust.ipam.weka;
 
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
 import hk.ust.ipam.weka.model.SimpleWekaModel;
-import hk.ust.ipam.weka.result.SimpleWekaResult;
-import hk.ust.ipam.weka.result.SimpleWekaResultTable;
+import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
+import hk.ust.ipam.weka.result.SimpleWekaStatResultTable;
 import hk.ust.ipam.weka.util.SimpleWekaUtil;
 import org.junit.Test;
 import weka.core.Instance;
@@ -19,10 +19,13 @@ public class SimpleWekaModelTest {
 
     @Test
     public void trainingModelTest() {
-        Instances data = SimpleWekaUtil.readData(IRIS_ARFF, -1);
+        SimpleWekaClassifier.ClassifierName classifierName = SimpleWekaClassifier.ClassifierName.RANDOM_FOREST;
+        int idxClassAttr = -1;
+        Instances data = SimpleWekaUtil.readData(IRIS_ARFF, idxClassAttr);
+        int[] removeIdx = null;
 
-        SimpleWekaModel model = new SimpleWekaModel(SimpleWekaClassifier.ClassifierName.RANDOM_FOREST);
-        model.trainModel(data, null, true);
+        SimpleWekaModel model = new SimpleWekaModel(classifierName);
+        model.trainModel(data, removeIdx);
 
         model.saveModel(IRIS_MODEL);
     }
@@ -30,15 +33,16 @@ public class SimpleWekaModelTest {
     @Test
     public void testModelTest() {
         SimpleWekaModel model = new SimpleWekaModel(IRIS_MODEL);
-        Instances data = SimpleWekaUtil.readData(IRIS_ARFF, -1);
+        int idxClassAttr = -1;
+        Instances data = SimpleWekaUtil.readData(IRIS_ARFF, idxClassAttr);
 
-        SimpleWekaResultTable resultTable = new SimpleWekaResultTable(data);
+        SimpleWekaStatResultTable resultTable = new SimpleWekaStatResultTable(data);
 
         for (int i = 0; i < data.numInstances(); i++) {
             Instance curr = data.get(i);
-            SimpleWekaResult result = model.classifyInstanceHighest(curr);
 
-            resultTable.addResult(curr, result);
+            SimpleWekaBinaryResult result = model.classifyInstance(curr);
+            resultTable.addResult(result);
 
             System.out.println(result.toString());
         }

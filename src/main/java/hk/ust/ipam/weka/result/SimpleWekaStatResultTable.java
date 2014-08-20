@@ -11,7 +11,7 @@ import java.util.Arrays;
  * But, Weka does not allow it. Weka provides only one method for it by Evaluation class.
  * Created by jeehoonyoo on 11/8/14.
  */
-public class SimpleWekaResultTable {
+public class SimpleWekaStatResultTable {
 
     /**
      * Result table stores the count of FP, FN, TP and TN for all the classes
@@ -37,7 +37,7 @@ public class SimpleWekaResultTable {
      * Gets the number of classes by Instances object, then initializes the member variables
      * @param instances Only to get the number of classes
      */
-    public SimpleWekaResultTable(Instances instances) {
+    public SimpleWekaStatResultTable(Instances instances) {
         int noClasses = instances.get(0).numClasses();
         initResult(noClasses);
     }
@@ -46,7 +46,7 @@ public class SimpleWekaResultTable {
      * Initializes the member variables by the number of classes
      * @param noClasses The number of classes
      */
-    public SimpleWekaResultTable(int noClasses) {
+    public SimpleWekaStatResultTable(int noClasses) {
         initResult(noClasses);
     }
 
@@ -55,29 +55,27 @@ public class SimpleWekaResultTable {
      * @param noClasses The number of classes
      */
     public void initResult(int noClasses) {
-        this.resultTable = null;
+        clear();
+
         this.resultTable = new int[noClasses][noClasses];
-
-        this.precision = null;
         this.precision = new double[noClasses];
-
-        this.recall = null;
         this.recall = new double[noClasses];
-
-        this.fmeasure = null;
         this.fmeasure = new double[noClasses];
+    }
+
+    public void clear() {
+        this.resultTable = null;
+        this.precision = null;
+        this.recall = null;
+        this.fmeasure = null;
     }
 
     /**
      * Adds one result to the result table
-     * @param instance  The target instance classified
-     * @param result    SimpleWekaResult object for given instance
+     * @param result    SimpleWekaBinaryResult object for given instance
      */
-    public void addResult(Instance instance, SimpleWekaResult result) {
-        int idxActual = (int)instance.classValue();
-        int idxResult = result.getClassIdx();
-
-        this.resultTable[idxActual][idxResult]++;
+    public void addResult(SimpleWekaBinaryResult result) {
+        this.resultTable[result.getIdxActual()][result.getIdxClassified()]++;
     }
 
     /**
@@ -162,7 +160,7 @@ public class SimpleWekaResultTable {
      */
     @Override
     public String toString() {
-        return "SimpleWekaResultTable{" +
+        return "SimpleWekaStatResultTable{" +
                 "precision=" + Arrays.toString(precision) +
                 ", recall=" + Arrays.toString(recall) +
                 ", fmeasure=" + Arrays.toString(fmeasure) +
