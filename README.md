@@ -47,9 +47,9 @@ Testing a trained model on given dataset: It is same as testModelTest method in 
 Evaluation Examples
 -----
 Evaluate a model with training and test setting. This module can also compute the cost-effectiveness in evaluation. It shows three factors in cost-effectiveness:
-1) Given budget (the number of target instances in data), what percentage of target instances can be found?
-2) To find all the target instances, what percentage of instances need to be inspected?
-3) The percentage of target instances to be found with given intervals
+* Given budget (the number of target instances in data), what percentage of target instances can be found?
+* To find all the target instances, what percentage of instances need to be inspected?
+* The percentage of target instances to be found with given intervals
 
 The last parameter in trainAndTest method represents the index of attribute as an ID of each instance. If the negative values is passed, this module does not use ID. It is strongly guided to put idxID in removeIdx which is the list of indexes ignored during classification.
 ```java
