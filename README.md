@@ -44,7 +44,7 @@ Testing a trained model on given dataset: It is same as testModelTest method in 
     }
 ```
 
-Evaluation Examples
+SimpleWekaEvaluation Examples
 -----
 Evaluate a model with training and test setting. This module can also compute the cost-effectiveness in evaluation. It shows three factors in cost-effectiveness:
 * Given budget (the number of target instances in data), what percentage of target instances can be found?
