@@ -1,75 +1,122 @@
 package hk.ust.ipam.weka.result;
 
+import java.util.Arrays;
+
 /**
  * Manages result with some useful information
  * Created by jeehoonyoo on 8/8/14.
  */
 public class SimpleWekaBinaryResult {
-    /**
-     * The index of classified class
-     */
-    private int idxClassified;
+    public final static double NO_ID   = -1.0f;
 
     /**
      * The index of actual class of given instance
      */
-    private int idxActual;
+    private int actualIdx;
 
     /**
-     * The score of classified class
+     * scores for classes
      */
-    private double scoreClassified;
+    private double[] scores;
 
     /**
-     * The score of actual class
+     * ID to identify the instance. It should be positive.
      */
-    private double scoreActual;
-
+    private double id;
 
     /**
      *
-     * @param idxClassified The index of classified class
-     * @param idxActual     The index of actual class of given instance
-     * @param scoreClassified   The score of classified class
-     * @param scoreActual   The score of actual class
+     * @param actualIdx     The index of actual class of given instance
+     * @param scores   The score of actual class
+     * @param id    ID for the instance
      */
-    public SimpleWekaBinaryResult(int idxClassified, int idxActual, double scoreClassified, double scoreActual) {
-        this.idxClassified = idxClassified;
-        this.idxActual = idxActual;
-        this.scoreClassified = scoreClassified;
-        this.scoreActual = scoreActual;
+    public SimpleWekaBinaryResult(int actualIdx, double[] scores, double id) {
+        this.actualIdx = actualIdx;
+        this.scores = scores;
+
+        this.id = id;
+        if (id < 0)
+            this.id = NO_ID;
     }
 
     /**
-     * Gets idxClassified. Please check idxClassified variable.
-     * @return  idxClassified
+     * Gets the index of classified class.
+     * @return  the index of classified class
      */
-    public int getIdxClassified() {
-        return idxClassified;
+    public int getClassifiedIdx() {
+        int highestIdx = 0;
+        for (int i = 1; i < this.scores.length; i++) {
+            if (scores[i] > scores[highestIdx])
+                highestIdx = i;
+        }
+
+        return highestIdx;
     }
 
     /**
-     * Gets idxActual. Please check idxActual variable.
-     * @return  idxActual
+     * Gets actualIdx. Please check actualIdx variable.
+     * @return  actualIdx
      */
-    public int getIdxActual() {
-        return idxActual;
+    public int getActualIdx() {
+        return actualIdx;
     }
 
     /**
-     * Gets scoreClassified. Please check scoreClassified variable.
-     * @return  scoreClassified
+     * Gets the score for classified class.
+     * @return  the score for classified class.
      */
-    public double getScoreClassified() {
-        return scoreClassified;
+    public double getClassifiedScore() {
+        double highestScore = this.scores[0];
+        for (int i = 1; i < this.scores.length; i++) {
+            if (scores[i] > highestScore)
+                highestScore = scores[i];
+        }
+
+        return highestScore;
     }
 
     /**
-     * Gets scoreActual. Please check scoreActual variable.
-     * @return  scoreActual
+     * Gets the score for actual class.
+     * @return  the score for actual class
      */
     public double getScoreActual() {
-        return scoreActual;
+        return this.scores[actualIdx];
+    }
+
+    /**
+     * Gets the score for given index
+     * @param index the index of class
+     * @return  the score for given index
+     */
+    public double getScoreAt(int index) {
+        if (index < 0 || index >= this.scores.length)
+            return -1;
+
+        return this.scores[index];
+    }
+
+    /**
+     * Gets the scores for all the classes
+     * @return  scores
+     */
+    public double[] getScores() {
+        return scores;
+    }
+
+    /**
+     * Gets the number of classes.
+     * @return  the number of classes
+     */
+    public int numClasses() {
+        return this.scores.length;
+    }
+
+    /**
+     * Gets ID of the instance
+     * @return  id of the instance
+     */
+    public double getId() {
+        return id;
     }
 
     /**
@@ -79,10 +126,9 @@ public class SimpleWekaBinaryResult {
     @Override
     public String toString() {
         return "SimpleWekaBinaryResult{" +
-                "idxClassified=" + idxClassified +
-                ", idxActual=" + idxActual +
-                ", scoreClassified=" + scoreClassified +
-                ", scoreActual=" + scoreActual +
+                "actualIdx=" + actualIdx +
+                ", scores=" + Arrays.toString(scores) +
+                ", id=" + id +
                 '}';
     }
 }

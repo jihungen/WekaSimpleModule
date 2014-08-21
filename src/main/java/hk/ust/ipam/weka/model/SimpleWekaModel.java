@@ -2,7 +2,6 @@ package hk.ust.ipam.weka.model;
 
 import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
-import hk.ust.ipam.weka.result.SimpleWekaCEResult;
 import org.apache.log4j.Logger;
 
 import weka.classifiers.meta.FilteredClassifier;
@@ -116,74 +115,19 @@ public class SimpleWekaModel {
     }
 
     /**
-     * Classifies an instance by given model
-     * @param instance  The instance to be classified
-     * @return  The scores of all classes
-     */
-    public double[] classifyInstanceScores(Instance instance) {
-        try {
-            return this.classifier.distributionForInstance(instance);
-        } catch (Exception e) {
-            log.error("cannot classify the given instance:", e);
-            return null;
-        }
-    }
-
-    /**
-     * Classifies an instance by given model, but returns the score for only interesting class
-     * @param instance  The instance to be classified
-     * @param idxInterest   The index of interesting class
-     * @return  The score of only interesting class
-     */
-    public double classifyInstance(Instance instance, int idxInterest) {
-        double[] score = classifyInstanceScores(instance);
-        if (idxInterest < 0 || idxInterest >= score.length)
-            return -1;
-
-        return score[idxInterest];
-    }
-
-    /**
      * Classifies an instance by given model, but SimpleWekaBinaryResult for the class with the highest score
      * @param instance  The instance to be classified
      * @return  SimpleWekaBinaryResult object. Please check SimpleWekaBinaryResult class
      */
-    public SimpleWekaBinaryResult classifyInstance(Instance instance) {
+    public SimpleWekaBinaryResult classifyInstance(Instance instance, int idxID) {
         double[] score = classifyInstanceScores(instance);
-        return getResult(instance, score);
-    }
-
-    /**
-     *
-     * @param instance
-     * @param score
-     * @param idxInterest
-     * @return
-     */
-    public static SimpleWekaCEResult getResult(Instance instance, double[] score, int idxInterest) {
-        if (idxInterest < 0 || idxInterest >= score.length)
-            return null;
-
-        return new SimpleWekaCEResult(instance, score[idxInterest]);
-    }
-
-    /**
-     *
-     * @param instance
-     * @param score
-     * @return
-     */
-    public static SimpleWekaBinaryResult getResult(Instance instance, double[] score) {
-        int idxClassified = 0;
-
-        for (int i = 1; i < score.length; i++)
-        {
-            if (score[i] > score[idxClassified])
-                idxClassified = i;
-        }
-
         int idxActual = (int)instance.classValue();
-        return new SimpleWekaBinaryResult(idxClassified, idxActual, score[idxClassified], score[idxActual]);
+
+        double id = SimpleWekaBinaryResult.NO_ID;
+        if (idxID >= 0)
+            id = instance.value(idxID);
+
+        return new SimpleWekaBinaryResult(idxActual, score, id);
     }
 
     /**
@@ -205,5 +149,19 @@ public class SimpleWekaModel {
      */
     private void setClassifier(SimpleWekaClassifier.ClassifierName classifierName) {
         this.classifier.setClassifier(SimpleWekaClassifier.getClassifier(classifierName));
+    }
+
+    /**
+     * Classifies an instance by given model
+     * @param instance  The instance to be classified
+     * @return  The scores of all classes
+     */
+    private double[] classifyInstanceScores(Instance instance) {
+        try {
+            return this.classifier.distributionForInstance(instance);
+        } catch (Exception e) {
+            log.error("cannot classify the given instance:", e);
+            return null;
+        }
     }
 }

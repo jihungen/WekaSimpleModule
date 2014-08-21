@@ -3,13 +3,14 @@ package hk.ust.ipam.weka.evaluation;
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
 import hk.ust.ipam.weka.model.SimpleWekaModel;
 import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
-import hk.ust.ipam.weka.result.SimpleWekaCEResult;
 import hk.ust.ipam.weka.result.SimpleWekaCESummary;
-import hk.ust.ipam.weka.result.SimpleWekaStatResultTable;
+import hk.ust.ipam.weka.result.SimpleWekaStatisticalResult;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -18,42 +19,36 @@ import java.util.Random;
 public class SimpleWekaEvaluation {
     public final static int NO_CLASS = -1;
 
-    private SimpleWekaStatResultTable statResultTable;
-    private SimpleWekaCESummary ceSummary;
+    private List<SimpleWekaBinaryResult> binaryResults = null;
+    private Attribute classAttribute = null;
 
     public SimpleWekaEvaluation() {
-        this.statResultTable = null;
-        this.ceSummary = null;
+        init();
     }
 
     public void trainAndTest(SimpleWekaClassifier.ClassifierName classifierName, int[] removeIdx,
-                                        Instances trainingData, Instances testData,
-                                        String interestClassName, int ceIntervals) {
+                                        Instances trainingData, Instances testData, int idxID) {
         SimpleWekaModel model = new SimpleWekaModel(classifierName);
         model.trainModel(trainingData, removeIdx);
 
-        int idxInterest = findInterestClassIdx(testData, interestClassName);
-        init(testData.numClasses(), idxInterest);
-
-        evaluateModel(model, testData, idxInterest);
-        computeResult(ceIntervals);
+        evaluateModel(model, testData, idxID);
     }
 
-    public void evaluateModel(SimpleWekaModel model, Instances testData, String interestClassName, int ceIntervals) {
-        int idxInterest = findInterestClassIdx(testData, interestClassName);
-        init(testData.numClasses(), idxInterest);
+    public void evaluateModel(SimpleWekaModel model, Instances testData, int idxID) {
+        for (int i = 0; i < testData.numInstances(); i++) {
+            Instance curr = testData.get(i);
 
-        evaluateModel(model, testData, idxInterest);
-        computeResult(ceIntervals);
+            SimpleWekaBinaryResult binaryResult = model.classifyInstance(curr, idxID);
+            this.binaryResults.add(binaryResult);
+        }
+
+        setClassAttribute(testData.classAttribute());
     }
 
-    public void nFoldCrossValidation(SimpleWekaClassifier.ClassifierName classifierName, int[] removeIdx, int nFolds,
-                                     Instances data, String interestClassName, int ceIntervals) {
+    public void nFoldCrossValidation(SimpleWekaClassifier.ClassifierName classifierName, int[] removeIdx,
+                                     Instances data, int nFolds, int idxID) {
         if (nFolds <= 1)
             return;
-
-        int idxInterest = findInterestClassIdx(data, interestClassName);
-        init(data.numClasses(), idxInterest);
 
         Random random = new Random(System.currentTimeMillis());
         data.randomize(random);
@@ -66,70 +61,56 @@ public class SimpleWekaEvaluation {
             SimpleWekaModel model = new SimpleWekaModel(classifierName);
             model.trainModel(trainingData, removeIdx);
 
-            evaluateModel(model, testData, idxInterest);
+            evaluateModel(model, testData, idxID);
+        }
+    }
+
+    private void setClassAttribute(Attribute classAttribute) {
+        this.classAttribute = classAttribute;
+    }
+
+    private void init() {
+        if (this.binaryResults != null) {
+            this.binaryResults.clear();
+            this.binaryResults = null;
         }
 
-        computeResult(ceIntervals);
+        this.binaryResults = new ArrayList<SimpleWekaBinaryResult>();
+
+        this.classAttribute = null;
     }
 
-    public SimpleWekaStatResultTable getStatResultTable() {
-        return statResultTable;
+    public SimpleWekaStatisticalResult computeStatisticalResult() {
+        int noClasses = this.binaryResults.get(0).numClasses();
+        SimpleWekaStatisticalResult statisticalResult = new SimpleWekaStatisticalResult(noClasses);
+
+        for (SimpleWekaBinaryResult currResult: this.binaryResults)
+            statisticalResult.addResult(currResult);
+
+        statisticalResult.computeResult();
+        return statisticalResult;
     }
 
-    public SimpleWekaCESummary getCeSummary() {
+    public SimpleWekaCESummary computeCESummary(String targetClassName, int ceIntervals) {
+        if (this.classAttribute == null)
+            return null;
+
+        int idxTargetClass = findTargetClassIdx(targetClassName);
+        SimpleWekaCESummary ceSummary = new SimpleWekaCESummary();
+        ceSummary.computeResult(this.binaryResults, idxTargetClass, ceIntervals);
+
         return ceSummary;
     }
 
-    private void evaluateModel(SimpleWekaModel model, Instances testData, int idxInterest) {
-        for (int i = 0; i < testData.numInstances(); i++) {
-            Instance curr = testData.get(i);
-            double[] score = model.classifyInstanceScores(curr);
-
-            SimpleWekaBinaryResult binaryResult = SimpleWekaModel.getResult(curr, score);
-            this.statResultTable.addResult(binaryResult);
-
-            if (idxInterest >= 0)
-            {
-                SimpleWekaCEResult ceResult = SimpleWekaModel.getResult(curr, score, idxInterest);
-                this.ceSummary.addResult(ceResult);
-            }
-        }
-    }
-
-    private int findInterestClassIdx(Instances instances, String className) {
+    private int findTargetClassIdx(String className) {
         if (className == null)
             return NO_CLASS;
 
-        Attribute classAttr = instances.classAttribute();
-        int idx = classAttr.indexOfValue(className);
+        int idx = this.classAttribute.indexOfValue(className);
 
         if (idx == -1)
             return NO_CLASS;
         else
             return idx;
-    }
-
-    private void init(int noClasses, int idxInterest) {
-        clear();
-
-        this.statResultTable = new SimpleWekaStatResultTable(noClasses);
-        this.ceSummary = new SimpleWekaCESummary(idxInterest);
-    }
-
-    private void clear() {
-        if (this.statResultTable != null) {
-            this.statResultTable.clear();
-            this.statResultTable = null;
-        }
-
-        if (this.ceSummary != null) {
-            this.ceSummary.clear();
-            this.ceSummary = null;
-        }
-    }
-
-    private void computeResult(int ceIntervals) {
-        this.statResultTable.computeResult();
-        this.ceSummary.computeResult(ceIntervals);
     }
 }

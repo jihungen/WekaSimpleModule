@@ -1,5 +1,7 @@
 package hk.ust.ipam.weka.result;
 
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,9 +11,6 @@ import java.util.List;
  * Created by jeehoonyoo on 19/8/14.
  */
 public class SimpleWekaCESummary {
-    private List<SimpleWekaCEResult> listCEResults;
-    private int idxInterest;
-
     /**
      * if inspect # of n / ceAtInterval, what percentage of target instances can be found?
      */
@@ -27,64 +26,55 @@ public class SimpleWekaCESummary {
      */
     private double foundGivenBudgetPosition;
 
-    public SimpleWekaCESummary(int idxInterest) {
-        init(idxInterest);
+    /**
+     * Logger
+     */
+    private static Logger log = Logger.getLogger(SimpleWekaCESummary.class.getName());
+
+    public SimpleWekaCESummary() {
+        init();
     }
 
-    public void init(int idxInterest) {
-        clear();
-        this.listCEResults = new ArrayList<SimpleWekaCEResult>();
-        this.idxInterest = idxInterest;
-    }
-
-    public void clear() {
-        if (this.listCEResults != null) {
-            this.listCEResults.clear();
-            this.listCEResults = null;
-        }
-
+    public void init() {
         this.ceAtInterval = null;
     }
 
-    public void addResult(SimpleWekaCEResult ceResult) {
-        this.listCEResults.add(ceResult);
-    }
-
-    public void computeResult(int noIntervals) {
-        if (this.idxInterest < 0)
+    public void computeResult(List<SimpleWekaBinaryResult> binaryResults, int idxTarget, int noIntervals) {
+        if (idxTarget < 0)
             return;
 
         if (noIntervals <= 1)
             return;
 
-        int noTotalInterests = countInterests(this.listCEResults, this.idxInterest);
+        int noTotalTargets = countTargets(binaryResults, idxTarget);
+        Collections.sort(binaryResults, new SimpleWekaBinaryResultComparator(idxTarget));
 
-        Collections.sort(this.listCEResults);
+        for (SimpleWekaBinaryResult curr: binaryResults)
+            System.out.println(curr);
 
         this.ceAtInterval = new double[noIntervals - 1];
         this.foundGivenBudgetPosition = 0;
         this.foundAllPostition = 0;
 
-        int noTotal = this.listCEResults.size();
-        int noInterests = 0;
+        int noTotal = binaryResults.size();
+        int noTargets = 0;
 
         int idxIntervals = 0;
         double unitIntervals = (double)noTotal / (double)noIntervals;
 
         for (int i = 0; i < noTotal; i++) {
-            int currClassIdx = (int)this.listCEResults.get(i).getInstance().classValue();
-            if (currClassIdx == this.idxInterest)
-                noInterests++;
+            if (binaryResults.get(i).getActualIdx() == idxTarget)
+                noTargets++;
 
             if (i == (int)(unitIntervals * (idxIntervals + 1))) {
-                this.ceAtInterval[idxIntervals] = (double) noInterests / noTotalInterests;
+                this.ceAtInterval[idxIntervals] = (double) noTargets / noTotalTargets;
                 idxIntervals++;
             }
 
-            if ((i + 1) == noTotalInterests)
-                this.foundGivenBudgetPosition = (double)noInterests / noTotalInterests;
+            if ((i + 1) == noTotalTargets)
+                this.foundGivenBudgetPosition = (double)noTargets / noTotalTargets;
 
-            if (noInterests == noTotalInterests && this.foundAllPostition == 0)
+            if (noTargets == noTotalTargets && this.foundAllPostition == 0)
                 this.foundAllPostition = (double)i / noTotal;
         }
     }
@@ -101,16 +91,30 @@ public class SimpleWekaCESummary {
         return foundGivenBudgetPosition;
     }
 
-    private static int countInterests(List<SimpleWekaCEResult> listCEResults, int idxInterest) {
-        int noTotalInterests = 0;
+    public static List<SimpleWekaBinaryResult> getBinaryResultsBelow(List<SimpleWekaBinaryResult> binaryResults,
+                                                                     int idxTarget, double point) {
+        List<SimpleWekaBinaryResult> selectedBinaryResults = new ArrayList<SimpleWekaBinaryResult>();
+        int idxStart = (int)((double)binaryResults.size() * point);
 
-        for (SimpleWekaCEResult curr: listCEResults) {
-            int currClassIdx = (int)curr.getInstance().classValue();
-            if (currClassIdx == idxInterest)
-                noTotalInterests++;
+        for (int i = idxStart; i < binaryResults.size(); i++) {
+            SimpleWekaBinaryResult curr = binaryResults.get(i);
+            if (curr.getActualIdx() == idxTarget)
+                selectedBinaryResults.add(curr);
         }
 
-        return noTotalInterests;
+        return selectedBinaryResults;
+    }
+
+    private static int countTargets(List<SimpleWekaBinaryResult> binaryResults, int idxTarget) {
+        int noTotalTargets = 0;
+
+        for (SimpleWekaBinaryResult curr: binaryResults) {
+            int currClassIdx = curr.getActualIdx();
+            if (currClassIdx == idxTarget)
+                noTotalTargets++;
+        }
+
+        return noTotalTargets;
     }
 
     @Override

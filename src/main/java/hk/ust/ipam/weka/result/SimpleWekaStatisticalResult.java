@@ -1,8 +1,5 @@
 package hk.ust.ipam.weka.result;
 
-import weka.core.Instance;
-import weka.core.Instances;
-
 import java.util.Arrays;
 
 /**
@@ -11,7 +8,7 @@ import java.util.Arrays;
  * But, Weka does not allow it. Weka provides only one method for it by Evaluation class.
  * Created by jeehoonyoo on 11/8/14.
  */
-public class SimpleWekaStatResultTable {
+public class SimpleWekaStatisticalResult {
 
     /**
      * Result table stores the count of FP, FN, TP and TN for all the classes
@@ -34,19 +31,10 @@ public class SimpleWekaStatResultTable {
     private double[] fmeasure;
 
     /**
-     * Gets the number of classes by Instances object, then initializes the member variables
-     * @param instances Only to get the number of classes
-     */
-    public SimpleWekaStatResultTable(Instances instances) {
-        int noClasses = instances.get(0).numClasses();
-        initResult(noClasses);
-    }
-
-    /**
      * Initializes the member variables by the number of classes
      * @param noClasses The number of classes
      */
-    public SimpleWekaStatResultTable(int noClasses) {
+    public SimpleWekaStatisticalResult(int noClasses) {
         initResult(noClasses);
     }
 
@@ -75,7 +63,7 @@ public class SimpleWekaStatResultTable {
      * @param result    SimpleWekaBinaryResult object for given instance
      */
     public void addResult(SimpleWekaBinaryResult result) {
-        this.resultTable[result.getIdxActual()][result.getIdxClassified()]++;
+        this.resultTable[result.getActualIdx()][result.getClassifiedIdx()]++;
     }
 
     /**
@@ -160,7 +148,7 @@ public class SimpleWekaStatResultTable {
      */
     @Override
     public String toString() {
-        return "SimpleWekaStatResultTable{" +
+        return "SimpleWekaStatisticalResult{" +
                 "precision=" + Arrays.toString(precision) +
                 ", recall=" + Arrays.toString(recall) +
                 ", fmeasure=" + Arrays.toString(fmeasure) +

@@ -3,7 +3,7 @@ package hk.ust.ipam.weka;
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
 import hk.ust.ipam.weka.model.SimpleWekaModel;
 import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
-import hk.ust.ipam.weka.result.SimpleWekaStatResultTable;
+import hk.ust.ipam.weka.result.SimpleWekaStatisticalResult;
 import hk.ust.ipam.weka.util.SimpleWekaUtil;
 import org.junit.Test;
 import weka.core.Instance;
@@ -35,19 +35,20 @@ public class SimpleWekaModelTest {
         SimpleWekaModel model = new SimpleWekaModel(IRIS_MODEL);
         int idxClassAttr = -1;
         Instances data = SimpleWekaUtil.readData(IRIS_ARFF, idxClassAttr);
+        int idxID = 0;
 
-        SimpleWekaStatResultTable resultTable = new SimpleWekaStatResultTable(data);
+        SimpleWekaStatisticalResult statisticalResult = new SimpleWekaStatisticalResult(data.numClasses());
 
         for (int i = 0; i < data.numInstances(); i++) {
             Instance curr = data.get(i);
 
-            SimpleWekaBinaryResult result = model.classifyInstance(curr);
-            resultTable.addResult(result);
+            SimpleWekaBinaryResult result = model.classifyInstance(curr, idxID);
+            statisticalResult.addResult(result);
 
             System.out.println(result.toString());
         }
 
-        resultTable.computeResult();
-        System.out.println(resultTable.toString());
+        statisticalResult.computeResult();
+        System.out.println(statisticalResult.toString());
     }
 }
