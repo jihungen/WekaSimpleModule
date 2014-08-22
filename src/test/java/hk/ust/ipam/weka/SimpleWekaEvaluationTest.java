@@ -30,8 +30,8 @@ public class SimpleWekaEvaluationTest {
         SimpleWekaEvaluation evaluation = new SimpleWekaEvaluation();
         evaluation.trainAndTest(classifierName, removeIdx, trainingData, testData, idxID);
 
-        SimpleWekaStatisticalResult resultTable = evaluation.computeStatisticalResult();
-        System.out.println(resultTable.toString());
+        SimpleWekaStatisticalResult statisticalResult = evaluation.computeStatisticalResult();
+        System.out.println(statisticalResult.toString());
 
         SimpleWekaCESummary ceSummary = evaluation.computeCESummary(targetClassName, ceIntervals);
         System.out.println(ceSummary.toString());
@@ -53,8 +53,8 @@ public class SimpleWekaEvaluationTest {
         SimpleWekaEvaluation evaluation = new SimpleWekaEvaluation();
         evaluation.nFoldCrossValidation(classifierName, removeIdx, data, nFolds, idxID);
 
-        SimpleWekaStatisticalResult resultTable = evaluation.computeStatisticalResult();
-        System.out.println(resultTable.toString());
+        SimpleWekaStatisticalResult statisticalResult = evaluation.computeStatisticalResult();
+        System.out.println(statisticalResult.toString());
 
         SimpleWekaCESummary ceSummary = evaluation.computeCESummary(targetClassName, ceIntervals);
         System.out.println(ceSummary.toString());

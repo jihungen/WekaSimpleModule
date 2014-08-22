@@ -1,10 +1,12 @@
 package hk.ust.ipam.weka.evaluation;
 
+import hk.ust.ipam.weka.code.SimpleWekaReturnCode;
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
 import hk.ust.ipam.weka.model.SimpleWekaModel;
 import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
 import hk.ust.ipam.weka.result.SimpleWekaCESummary;
 import hk.ust.ipam.weka.result.SimpleWekaStatisticalResult;
+import hk.ust.ipam.weka.util.SimpleWekaUtil;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -17,8 +19,6 @@ import java.util.Random;
  * Created by jeehoonyoo on 19/8/14.
  */
 public class SimpleWekaEvaluation {
-    public final static int NO_CLASS = -1;
-
     private List<SimpleWekaBinaryResult> binaryResults = null;
     private Attribute classAttribute = null;
 
@@ -81,8 +81,10 @@ public class SimpleWekaEvaluation {
     }
 
     public SimpleWekaStatisticalResult computeStatisticalResult() {
-        int noClasses = this.binaryResults.get(0).numClasses();
-        SimpleWekaStatisticalResult statisticalResult = new SimpleWekaStatisticalResult(noClasses);
+        if (this.classAttribute == null)
+            return null;
+
+        SimpleWekaStatisticalResult statisticalResult = new SimpleWekaStatisticalResult(this.classAttribute);
 
         for (SimpleWekaBinaryResult currResult: this.binaryResults)
             statisticalResult.addResult(currResult);
@@ -92,25 +94,23 @@ public class SimpleWekaEvaluation {
     }
 
     public SimpleWekaCESummary computeCESummary(String targetClassName, int ceIntervals) {
-        if (this.classAttribute == null)
+        int idxTargetClass = SimpleWekaUtil.findTargetClassIdx(this.classAttribute, targetClassName);
+        if (idxTargetClass == SimpleWekaReturnCode.NO_CLASS)
             return null;
 
-        int idxTargetClass = findTargetClassIdx(targetClassName);
         SimpleWekaCESummary ceSummary = new SimpleWekaCESummary();
         ceSummary.computeResult(this.binaryResults, idxTargetClass, ceIntervals);
 
         return ceSummary;
     }
 
-    private int findTargetClassIdx(String className) {
-        if (className == null)
-            return NO_CLASS;
+    public List<SimpleWekaBinaryResult> getBinaryResultsRange(String targetClassName, double startPoint, double endPoint) {
+        int idxTargetClass = SimpleWekaUtil.findTargetClassIdx(this.classAttribute, targetClassName);
+        if (idxTargetClass == SimpleWekaReturnCode.NO_CLASS)
+            return null;
 
-        int idx = this.classAttribute.indexOfValue(className);
-
-        if (idx == -1)
-            return NO_CLASS;
-        else
-            return idx;
+        return SimpleWekaCESummary.getBinaryResultsRange(this.binaryResults, idxTargetClass, startPoint, endPoint);
     }
+
+
 }

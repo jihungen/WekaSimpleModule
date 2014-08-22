@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3c4e7b7-8727-4427-9c24-408ada0c44da" name="Default" comment="Change the use of evaluation.&#10;Now, every result is stored in SimpleWekaBinaryResult.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResultComparator.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCEResult.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatResultTable.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java" />
+    <list default="true" id="d3c4e7b7-8727-4427-9c24-408ada0c44da" name="Default" comment="Add the function that shows the instances in some range. It is useful for checking the missing instances in cost-effectiveness setting.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/code/SimpleWekaReturnCode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResult.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCESummary.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCESummary.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/evaluation/SimpleWekaEvaluation.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/evaluation/SimpleWekaEvaluation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaEvaluationTest.java" afterPath="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaEvaluationTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/model/SimpleWekaModel.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/model/SimpleWekaModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaModelTest.java" afterPath="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaModelTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/iris.arff" afterPath="$PROJECT_DIR$/src/test/resources/iris.arff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/util/SimpleWekaUtil.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/util/SimpleWekaUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SimpleWeka.iws" />
@@ -35,21 +33,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SimpleWekaUtil.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SimpleWekaUtil.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/util/SimpleWekaUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1245">
-              <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.20950705" vertical-offset="586" max-vertical-offset="2430">
+              <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleWekaClassifier.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/classifier/SimpleWekaClassifier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="47" max-vertical-offset="615">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleWekaModel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/model/SimpleWekaModel.java">
+      <file leaf-file-name="SimpleWekaReturnCode.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/code/SimpleWekaReturnCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2595">
-              <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+              <caret line="5" column="33" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -58,8 +68,8 @@
       <file leaf-file-name="SimpleWekaStatisticalResult.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2325">
-              <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="2535">
+              <caret line="49" column="64" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -68,41 +78,8 @@
       <file leaf-file-name="SimpleWekaCESummary.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCESummary.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1021" max-vertical-offset="1875">
-              <caret line="81" column="20" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
-              <folding>
-                <element signature="e#814#815#0" expanded="true" />
-                <element signature="e#836#837#0" expanded="true" />
-                <element signature="e#862#863#0" expanded="true" />
-                <element signature="e#902#903#0" expanded="true" />
-                <element signature="e#2339#2340#0" expanded="true" />
-                <element signature="e#2374#2375#0" expanded="true" />
-                <element signature="e#2846#2870#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleWekaBinaryResultComparator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResultComparator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="555">
-              <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-              <folding>
-                <element signature="e#294#295#0" expanded="true" />
-                <element signature="e#336#337#0" expanded="true" />
-                <element signature="e#369#370#0" expanded="true" />
-                <element signature="e#401#402#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleWekaModelTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaModelTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4471831" vertical-offset="181" max-vertical-offset="795">
-              <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="271" max-vertical-offset="1800">
+              <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -111,34 +88,40 @@
       <file leaf-file-name="SimpleWekaEvaluation.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/evaluation/SimpleWekaEvaluation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="426" max-vertical-offset="1830">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1417" max-vertical-offset="1770">
+              <caret line="111" column="53" selection-start-line="111" selection-start-column="53" selection-end-line="111" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#738#739#0" expanded="true" />
-                <element signature="e#760#761#0" expanded="true" />
-                <element signature="e#2313#2314#0" expanded="true" />
-                <element signature="e#2365#2366#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleWekaEvaluationTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaEvaluationTest.java">
+      <file leaf-file-name="SimpleWekaBinaryResultComparator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResultComparator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="16" max-vertical-offset="930">
-              <caret line="14" column="71" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
+              <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="SimpleWekaModelTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaModelTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="900">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DaumEvaluationTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/DaumEvaluationTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="810">
+              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -147,8 +130,8 @@
       <file leaf-file-name="SimpleWekaBinaryResult.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1532" max-vertical-offset="2100">
-              <caret line="119" column="5" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2070">
+              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
               <folding>
                 <element signature="e#1389#1390#0" expanded="true" />
                 <element signature="e#1421#1422#0" expanded="true" />
@@ -156,10 +139,6 @@
                 <element signature="e#1984#1985#0" expanded="true" />
                 <element signature="e#2398#2399#0" expanded="true" />
                 <element signature="e#2427#2428#0" expanded="true" />
-                <element signature="e#2547#2548#0" expanded="true" />
-                <element signature="e#2588#2589#0" expanded="true" />
-                <element signature="e#2699#2700#0" expanded="true" />
-                <element signature="e#2724#2725#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -193,7 +172,6 @@
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/SimpleWekaModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaResultTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/util/SimpleWekaUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCE.java" />
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/cost/effectiveness/SimpleWekaCEInstance.java" />
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/cost/effectiveness/SimpleWekaCE.java" />
@@ -201,14 +179,18 @@
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatResultTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCEResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResultComparator.java" />
-        <option value="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaModelTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/evaluation/SimpleWekaEvaluation.java" />
         <option value="$PROJECT_DIR$/src/test/resources/iris.arff" />
-        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCESummary.java" />
-        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/model/SimpleWekaModel.java" />
         <option value="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaEvaluationTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaModelTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/SimpleWekaReturnCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/code/SimpleWekaReturnCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/evaluation/SimpleWekaEvaluation.java" />
+        <option value="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/DaumEvaluationTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/util/SimpleWekaUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCESummary.java" />
       </list>
     </option>
   </component>
@@ -278,6 +260,10 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Tests" />
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -490,16 +476,42 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="code" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SimpleWeka" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WekaSimpleModule" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="weka" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="classifier" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Tests" />
-      </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -535,7 +547,7 @@
       <recent name="hk.ust.ipam.weka" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SimpleWekaEvaluationTest">
+  <component name="RunManager" selected="JUnit.DaumEvaluationTest">
     <configuration default="false" name="SimpleWekaModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SimpleWeka" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -630,10 +642,32 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
+    <configuration default="false" name="DaumEvaluationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SimpleWeka" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="hk.ust.ipam.weka" />
+      <option name="MAIN_CLASS_NAME" value="hk.ust.ipam.weka.DaumEvaluationTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
     <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
@@ -643,6 +677,12 @@
       <setting name="params" value="" />
       <setting name="workDir" value="file://$PROJECT_DIR$" />
       <setting name="debug" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -674,19 +714,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -712,6 +739,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -788,19 +828,21 @@
       <patterns />
       <method />
     </configuration>
-    <list size="5">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="JUnit.hk.ust.ipam.weka in SimpleWeka" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.SimpleWekaModelTest" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.All in SimpleWeka" />
       <item index="3" class="java.lang.String" itemvalue="JUnit.All in SimpleWeka (1)" />
       <item index="4" class="java.lang.String" itemvalue="JUnit.SimpleWekaEvaluationTest" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.DaumEvaluationTest" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.SimpleWekaEvaluationTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SimpleWekaModelTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.All in SimpleWeka (1)" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.All in SimpleWeka" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.DaumEvaluationTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.SimpleWekaEvaluationTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SimpleWekaModelTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.All in SimpleWeka (1)" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.All in SimpleWeka" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -846,7 +888,11 @@
       <created>1408523465837</created>
       <updated>1408523465837</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Change the use of evaluation.&#10;Now, every result is stored in SimpleWekaBinaryResult.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use">
+      <created>1408608224487</created>
+      <updated>1408608224487</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -858,9 +904,8 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39719626" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32868218" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -874,8 +919,9 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35358256" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -901,11 +947,12 @@
     <MESSAGE value="Now, SimpleWeka can compute cost-effectiveness!&#10;Also, add n-fold cross-validation" />
     <MESSAGE value="To-do:&#10;1) Java-doc&#10;2) update the example use" />
     <MESSAGE value="Change the use of evaluation.&#10;Now, every result is stored in SimpleWekaBinaryResult.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change the use of evaluation.&#10;Now, every result is stored in SimpleWekaBinaryResult.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use" />
+    <MESSAGE value="Add the function that shows the instances in some range. It is useful for checking the missing instances in cost-effectiveness setting.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add the function that shows the instances in some range. It is useful for checking the missing instances in cost-effectiveness setting.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -913,14 +960,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/model/SimpleWekaModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2175" max-vertical-offset="2985">
-          <caret line="145" column="72" selection-start-line="145" selection-start-column="72" selection-end-line="145" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="2655">
@@ -956,10 +995,6 @@
             <element signature="e#1984#1985#0" expanded="true" />
             <element signature="e#2398#2399#0" expanded="true" />
             <element signature="e#2427#2428#0" expanded="true" />
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2699#2700#0" expanded="true" />
-            <element signature="e#2724#2725#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -976,7 +1011,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="990">
           <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1029,10 +1066,6 @@
             <element signature="e#1984#1985#0" expanded="true" />
             <element signature="e#2398#2399#0" expanded="true" />
             <element signature="e#2427#2428#0" expanded="true" />
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2699#2700#0" expanded="true" />
-            <element signature="e#2724#2725#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1041,7 +1074,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1064,10 +1099,6 @@
             <element signature="e#1984#1985#0" expanded="true" />
             <element signature="e#2398#2399#0" expanded="true" />
             <element signature="e#2427#2428#0" expanded="true" />
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2699#2700#0" expanded="true" />
-            <element signature="e#2724#2725#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1084,7 +1115,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1107,10 +1140,6 @@
             <element signature="e#1984#1985#0" expanded="true" />
             <element signature="e#2398#2399#0" expanded="true" />
             <element signature="e#2427#2428#0" expanded="true" />
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2699#2700#0" expanded="true" />
-            <element signature="e#2724#2725#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1127,7 +1156,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="630">
           <caret line="29" column="47" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="47" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1238,35 +1269,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/classifier/SimpleWekaClassifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.16/log4j-1.2.16.jar!/org/apache/log4j/Category.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35973597" vertical-offset="1451" max-vertical-offset="2415">
           <caret line="105" column="16" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/util/SimpleWekaUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1245">
-          <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/iris.arff">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29049295" vertical-offset="810" max-vertical-offset="3480">
-          <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1278,60 +1284,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/evaluation/SimpleWekaEvaluation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="426" max-vertical-offset="1830">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#738#739#0" expanded="true" />
-            <element signature="e#760#761#0" expanded="true" />
-            <element signature="e#2313#2314#0" expanded="true" />
-            <element signature="e#2365#2366#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1532" max-vertical-offset="2100">
-          <caret line="119" column="5" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
-          <folding>
-            <element signature="e#1389#1390#0" expanded="true" />
-            <element signature="e#1421#1422#0" expanded="true" />
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#1984#1985#0" expanded="true" />
-            <element signature="e#2398#2399#0" expanded="true" />
-            <element signature="e#2427#2428#0" expanded="true" />
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2699#2700#0" expanded="true" />
-            <element signature="e#2724#2725#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2325">
-          <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResultComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="555">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-          <folding>
-            <element signature="e#294#295#0" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
-            <element signature="e#369#370#0" expanded="true" />
-            <element signature="e#401#402#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/model/SimpleWekaModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2595">
@@ -1340,35 +1292,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCESummary.java">
+    <entry file="file://$PROJECT_DIR$/src/test/resources/iris.arff">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1021" max-vertical-offset="1875">
-          <caret line="81" column="20" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
-          <folding>
-            <element signature="e#814#815#0" expanded="true" />
-            <element signature="e#836#837#0" expanded="true" />
-            <element signature="e#862#863#0" expanded="true" />
-            <element signature="e#902#903#0" expanded="true" />
-            <element signature="e#2339#2340#0" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#2846#2870#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="3480">
+          <caret line="77" column="29" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaEvaluationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="16" max-vertical-offset="930">
-          <caret line="14" column="71" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="930">
+          <caret line="60" column="5" selection-start-line="39" selection-start-column="4" selection-end-line="60" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaModelTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4471831" vertical-offset="181" max-vertical-offset="795">
-          <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="795">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/classifier/SimpleWekaClassifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/evaluation/SimpleWekaEvaluation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1417" max-vertical-offset="1770">
+          <caret line="111" column="53" selection-start-line="111" selection-start-column="53" selection-end-line="111" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResultComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="555">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/code/SimpleWekaReturnCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/DaumEvaluationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="810">
+          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="2535">
+          <caret line="49" column="64" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2070">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <folding>
+            <element signature="e#1389#1390#0" expanded="true" />
+            <element signature="e#1421#1422#0" expanded="true" />
+            <element signature="e#1939#1940#0" expanded="true" />
+            <element signature="e#1984#1985#0" expanded="true" />
+            <element signature="e#2398#2399#0" expanded="true" />
+            <element signature="e#2427#2428#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCESummary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="271" max-vertical-offset="1800">
+          <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/util/SimpleWekaUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20950705" vertical-offset="586" max-vertical-offset="2430">
+          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

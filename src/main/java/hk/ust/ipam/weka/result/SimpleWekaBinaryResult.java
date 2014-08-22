@@ -119,6 +119,8 @@ public class SimpleWekaBinaryResult {
         return id;
     }
 
+
+
     /**
      * Automatically generated toString method
      * @return The values of all the members

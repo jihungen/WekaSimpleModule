@@ -1,5 +1,7 @@
 package hk.ust.ipam.weka.result;
 
+import weka.core.Attribute;
+
 import java.util.Arrays;
 
 /**
@@ -14,6 +16,11 @@ public class SimpleWekaStatisticalResult {
      * Result table stores the count of FP, FN, TP and TN for all the classes
      */
     private int[][] resultTable;
+
+    /**
+     * Class names
+     */
+    private String[] className;
 
     /**
      * Precision for all the classes
@@ -32,18 +39,24 @@ public class SimpleWekaStatisticalResult {
 
     /**
      * Initializes the member variables by the number of classes
-     * @param noClasses The number of classes
+     * @param classAttribute class attribute of target instances
      */
-    public SimpleWekaStatisticalResult(int noClasses) {
-        initResult(noClasses);
+    public SimpleWekaStatisticalResult(Attribute classAttribute) {
+        initResult(classAttribute);
     }
 
     /**
      * Initializes the member variables by the number of classes
-     * @param noClasses The number of classes
+     * @param classAttribute class attribute of target instances
      */
-    public void initResult(int noClasses) {
+    public void initResult(Attribute classAttribute) {
         clear();
+
+        int noClasses = classAttribute.numValues();
+
+        this.className = new String[noClasses];
+        for (int i = 0; i < noClasses; i++)
+            this.className[i] = classAttribute.value(i);
 
         this.resultTable = new int[noClasses][noClasses];
         this.precision = new double[noClasses];
@@ -53,6 +66,7 @@ public class SimpleWekaStatisticalResult {
 
     public void clear() {
         this.resultTable = null;
+        this.className = null;
         this.precision = null;
         this.recall = null;
         this.fmeasure = null;
@@ -144,12 +158,14 @@ public class SimpleWekaStatisticalResult {
 
     /**
      * Automatically generated toString method
-     * @return  The values of all the members
+     *
+     * @return The values of all the members
      */
     @Override
     public String toString() {
         return "SimpleWekaStatisticalResult{" +
-                "precision=" + Arrays.toString(precision) +
+                ", className=" + Arrays.toString(className) +
+                ", precision=" + Arrays.toString(precision) +
                 ", recall=" + Arrays.toString(recall) +
                 ", fmeasure=" + Arrays.toString(fmeasure) +
                 '}';

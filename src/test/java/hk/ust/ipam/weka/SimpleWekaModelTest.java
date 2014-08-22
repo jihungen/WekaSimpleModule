@@ -37,7 +37,7 @@ public class SimpleWekaModelTest {
         Instances data = SimpleWekaUtil.readData(IRIS_ARFF, idxClassAttr);
         int idxID = 0;
 
-        SimpleWekaStatisticalResult statisticalResult = new SimpleWekaStatisticalResult(data.numClasses());
+        SimpleWekaStatisticalResult statisticalResult = new SimpleWekaStatisticalResult(data.classAttribute());
 
         for (int i = 0; i < data.numInstances(); i++) {
             Instance curr = data.get(i);
