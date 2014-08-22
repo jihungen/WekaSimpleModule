@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3c4e7b7-8727-4427-9c24-408ada0c44da" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/code/SimpleWekaReturnCode.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/code/SimpleWekaCode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResultComparator.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaBinaryResultComparator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCESummary.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaCESummary.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/evaluation/SimpleWekaEvaluation.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/evaluation/SimpleWekaEvaluation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaEvaluationTest.java" afterPath="$PROJECT_DIR$/src/test/java/hk/ust/ipam/weka/SimpleWekaEvaluationTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/model/SimpleWekaModel.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/model/SimpleWekaModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/result/SimpleWekaStatisticalResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/util/SimpleWekaUtil.java" afterPath="$PROJECT_DIR$/src/main/java/hk/ust/ipam/weka/util/SimpleWekaUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SimpleWeka.iws" />
@@ -916,7 +908,11 @@
       <created>1408673986441</created>
       <updated>1408673986441</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Put some comments and java-doc&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use">
+      <created>1408689978567</created>
+      <updated>1408689978567</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -939,7 +935,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5576324" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -972,7 +968,8 @@
     <MESSAGE value="To-do:&#10;1) Java-doc&#10;2) update the example use" />
     <MESSAGE value="Change the use of evaluation.&#10;Now, every result is stored in SimpleWekaBinaryResult.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use" />
     <MESSAGE value="Add the function that shows the instances in some range. It is useful for checking the missing instances in cost-effectiveness setting.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add the function that shows the instances in some range. It is useful for checking the missing instances in cost-effectiveness setting.&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use" />
+    <MESSAGE value="Put some comments and java-doc&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use" />
+    <option name="LAST_COMMIT_MESSAGE" value="Put some comments and java-doc&#10;&#10;To-do:&#10;1) Java-doc&#10;2) update the example use" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
