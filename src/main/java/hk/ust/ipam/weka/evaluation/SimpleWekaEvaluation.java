@@ -1,6 +1,6 @@
 package hk.ust.ipam.weka.evaluation;
 
-import hk.ust.ipam.weka.code.SimpleWekaReturnCode;
+import hk.ust.ipam.weka.code.SimpleWekaCode;
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
 import hk.ust.ipam.weka.model.SimpleWekaModel;
 import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
@@ -16,16 +16,36 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * Provides evaluation settings such as training/test and n-fold cross-validation
  * Created by jeehoonyoo on 19/8/14.
  */
 public class SimpleWekaEvaluation {
+    /**
+     * The list of binary results from classification. SimpleWekaEvaluation class will use
+     * these results to compute statistical results and cost-effectiveness values.
+     */
     private List<SimpleWekaBinaryResult> binaryResults = null;
+
+    /**
+     * Attribute object of class in target instances.
+     */
     private Attribute classAttribute = null;
 
+    /**
+     *
+     */
     public SimpleWekaEvaluation() {
         init();
     }
 
+    /**
+     *
+     * @param classifierName
+     * @param removeIdx
+     * @param trainingData
+     * @param testData
+     * @param idxID
+     */
     public void trainAndTest(SimpleWekaClassifier.ClassifierName classifierName, int[] removeIdx,
                                         Instances trainingData, Instances testData, int idxID) {
         SimpleWekaModel model = new SimpleWekaModel(classifierName);
@@ -34,6 +54,12 @@ public class SimpleWekaEvaluation {
         evaluateModel(model, testData, idxID);
     }
 
+    /**
+     *
+     * @param model
+     * @param testData
+     * @param idxID
+     */
     public void evaluateModel(SimpleWekaModel model, Instances testData, int idxID) {
         for (int i = 0; i < testData.numInstances(); i++) {
             Instance curr = testData.get(i);
@@ -45,6 +71,14 @@ public class SimpleWekaEvaluation {
         setClassAttribute(testData.classAttribute());
     }
 
+    /**
+     *
+     * @param classifierName
+     * @param removeIdx
+     * @param data
+     * @param nFolds
+     * @param idxID
+     */
     public void nFoldCrossValidation(SimpleWekaClassifier.ClassifierName classifierName, int[] removeIdx,
                                      Instances data, int nFolds, int idxID) {
         if (nFolds <= 1)
@@ -65,10 +99,17 @@ public class SimpleWekaEvaluation {
         }
     }
 
+    /**
+     *
+     * @param classAttribute
+     */
     private void setClassAttribute(Attribute classAttribute) {
         this.classAttribute = classAttribute;
     }
 
+    /**
+     *
+     */
     private void init() {
         if (this.binaryResults != null) {
             this.binaryResults.clear();
@@ -80,6 +121,10 @@ public class SimpleWekaEvaluation {
         this.classAttribute = null;
     }
 
+    /**
+     *
+     * @return
+     */
     public SimpleWekaStatisticalResult computeStatisticalResult() {
         if (this.classAttribute == null)
             return null;
@@ -93,9 +138,15 @@ public class SimpleWekaEvaluation {
         return statisticalResult;
     }
 
+    /**
+     *
+     * @param targetClassName
+     * @param ceIntervals
+     * @return
+     */
     public SimpleWekaCESummary computeCESummary(String targetClassName, int ceIntervals) {
         int idxTargetClass = SimpleWekaUtil.findTargetClassIdx(this.classAttribute, targetClassName);
-        if (idxTargetClass == SimpleWekaReturnCode.NO_CLASS)
+        if (idxTargetClass == SimpleWekaCode.NO_CLASS)
             return null;
 
         SimpleWekaCESummary ceSummary = new SimpleWekaCESummary();
@@ -104,13 +155,38 @@ public class SimpleWekaEvaluation {
         return ceSummary;
     }
 
-    public List<SimpleWekaBinaryResult> getBinaryResultsRange(String targetClassName, double startPoint, double endPoint) {
+    /**
+     *
+     * @param targetClassName
+     * @param bIncludeTarget
+     * @param startPoint
+     * @param endPoint
+     * @return
+     */
+    public List<SimpleWekaBinaryResult> getBinaryResultsRange(String targetClassName, boolean bIncludeTarget,
+                                                              double startPoint, double endPoint) {
         int idxTargetClass = SimpleWekaUtil.findTargetClassIdx(this.classAttribute, targetClassName);
-        if (idxTargetClass == SimpleWekaReturnCode.NO_CLASS)
+        if (idxTargetClass == SimpleWekaCode.NO_CLASS)
             return null;
 
-        return SimpleWekaCESummary.getBinaryResultsRange(this.binaryResults, idxTargetClass, startPoint, endPoint);
+        return SimpleWekaCESummary.getBinaryResultsRange(this.binaryResults, idxTargetClass, bIncludeTarget,
+                startPoint, endPoint);
     }
 
+    /**
+     *
+     * @param targetClassName
+     * @param bIncludeTarget
+     * @param startPoint
+     * @return
+     */
+    public List<SimpleWekaBinaryResult> getBinaryResultsRange(String targetClassName, boolean bIncludeTarget,
+                                                              double startPoint) {
+        int idxTargetClass = SimpleWekaUtil.findTargetClassIdx(this.classAttribute, targetClassName);
+        if (idxTargetClass == SimpleWekaCode.NO_CLASS)
+            return null;
 
+        return SimpleWekaCESummary.getBinaryResultsRange(this.binaryResults, idxTargetClass, bIncludeTarget,
+                startPoint, 1.0f);
+    }
 }

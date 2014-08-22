@@ -2,11 +2,14 @@ package hk.ust.ipam.weka;
 
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
 import hk.ust.ipam.weka.evaluation.SimpleWekaEvaluation;
+import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
 import hk.ust.ipam.weka.result.SimpleWekaCESummary;
 import hk.ust.ipam.weka.result.SimpleWekaStatisticalResult;
 import hk.ust.ipam.weka.util.SimpleWekaUtil;
 import org.junit.Test;
 import weka.core.Instances;
+
+import java.util.List;
 
 /**
  * Created by jeehoonyoo on 20/8/14.
@@ -53,10 +56,25 @@ public class SimpleWekaEvaluationTest {
         SimpleWekaEvaluation evaluation = new SimpleWekaEvaluation();
         evaluation.nFoldCrossValidation(classifierName, removeIdx, data, nFolds, idxID);
 
+        System.out.println("Statistical results:");
         SimpleWekaStatisticalResult statisticalResult = evaluation.computeStatisticalResult();
         System.out.println(statisticalResult.toString());
 
+        System.out.println("Cost-effectiveness results:");
         SimpleWekaCESummary ceSummary = evaluation.computeCESummary(targetClassName, ceIntervals);
         System.out.println(ceSummary.toString());
+
+        int noTargets = SimpleWekaUtil.countInstances(data, targetClassName);
+        System.out.println("The number of target instances: " + noTargets);
+
+        System.out.println("closed issues in the outside of given budget:");
+        List<SimpleWekaBinaryResult> issuesBelowBudgets = evaluation.getBinaryResultsRange(targetClassName, true, noTargets, data.numInstances() - 1);
+        for (SimpleWekaBinaryResult curr: issuesBelowBudgets)
+            System.out.println(curr.toString());
+
+        System.out.println("open issues in given budget:");
+        List<SimpleWekaBinaryResult> opponentIssuesAboveBudgets = evaluation.getBinaryResultsRange(targetClassName, false, 0, noTargets);
+        for (SimpleWekaBinaryResult curr: opponentIssuesAboveBudgets)
+            System.out.println(curr.toString());
     }
 }

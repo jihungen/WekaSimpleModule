@@ -115,8 +115,9 @@ public class SimpleWekaModel {
     }
 
     /**
-     * Classifies an instance by given model, but SimpleWekaBinaryResult for the class with the highest score
+     * Classifies an instance by given model.
      * @param instance  The instance to be classified
+     * @param idxID The index of class attribute
      * @return  SimpleWekaBinaryResult object. Please check SimpleWekaBinaryResult class
      */
     public SimpleWekaBinaryResult classifyInstance(Instance instance, int idxID) {

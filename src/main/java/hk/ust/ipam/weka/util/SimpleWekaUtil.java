@@ -1,6 +1,6 @@
 package hk.ust.ipam.weka.util;
 
-import hk.ust.ipam.weka.code.SimpleWekaReturnCode;
+import hk.ust.ipam.weka.code.SimpleWekaCode;
 import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
 import org.apache.log4j.Logger;
 import weka.core.Attribute;
@@ -68,8 +68,7 @@ public class SimpleWekaUtil {
             return null;
         }
 
-        if (data == null)
-        {
+        if (data == null) {
             log.error("cannot load data file");
             return null;
         }
@@ -84,18 +83,19 @@ public class SimpleWekaUtil {
     }
 
     /**
-     *
-     * @param data
-     * @param idxTargetClass
-     * @return
+     * Counts the number of target instances given class index
+     * @param data  Target instances
+     * @param idxTargetClass    The index of target class
+     * @return  The number of target instances
      */
     public static int countInstances(Instances data, int idxTargetClass) {
-        if (data.classIndex() < 0)
-            return SimpleWekaReturnCode.NO_CLASS_DEFINED;
+        if (data.classIndex() < 0) {
+            log.error("class attribute is not defined");
+            return SimpleWekaCode.NO_CLASS_DEFINED;
+        }
 
         int noTargets = 0;
-        for (int i = 0; i < data.numInstances(); i++)
-        {
+        for (int i = 0; i < data.numInstances(); i++) {
             if (idxTargetClass == (int)data.get(i).classValue())
                 noTargets++;
         }
@@ -104,27 +104,29 @@ public class SimpleWekaUtil {
     }
 
     /**
-     *
-     * @param data
-     * @param targetClassName
-     * @return
+     * Counts the number of target instances given class name
+     * @param data  Target instances
+     * @param targetClassName   The name of target class
+     * @return  The number of target instances
      */
     public static int countInstances(Instances data, String targetClassName) {
-        if (data.classIndex() < 0)
-            return SimpleWekaReturnCode.NO_CLASS_DEFINED;
+        if (data.classIndex() < 0) {
+            log.error("class attribute is not defined");
+            return SimpleWekaCode.NO_CLASS_DEFINED;
+        }
 
         int idxTargetClass = findTargetClassIdx(data.classAttribute(), targetClassName);
-        if (idxTargetClass == SimpleWekaReturnCode.NO_CLASS)
-            return SimpleWekaReturnCode.NO_CLASS_DEFINED;
+        if (idxTargetClass == SimpleWekaCode.NO_CLASS)
+            return SimpleWekaCode.NO_CLASS;
 
         return countInstances(data, idxTargetClass);
     }
 
     /**
-     *
-     * @param binaryResults
-     * @param idxTargetClass
-     * @return
+     * Counts the number of target instances in the results given class index
+     * @param binaryResults The binary results from classification
+     * @param idxTargetClass    The index of target class
+     * @return  The number of target instances
      */
     public static int countInstances(List<SimpleWekaBinaryResult> binaryResults, int idxTargetClass) {
         int noTargets = 0;
@@ -137,19 +139,23 @@ public class SimpleWekaUtil {
     }
 
     /**
-     *
-     * @param classAttribute
-     * @param className
-     * @return
+     * Finds the index of class in class attribute by name
+     * @param classAttribute    Class attribute from instances
+     * @param className The name of class
+     * @return  The index of class
      */
     public static int findTargetClassIdx(Attribute classAttribute, String className) {
-        if (classAttribute == null || className == null)
-            return SimpleWekaReturnCode.NO_CLASS;
+        if (classAttribute == null || className == null) {
+            log.error("cannot find the class by given class name");
+            return SimpleWekaCode.NO_CLASS;
+        }
 
         int idx = classAttribute.indexOfValue(className);
 
-        if (idx == -1)
-            return SimpleWekaReturnCode.NO_CLASS;
+        if (idx == -1) {
+            log.error("cannot find the class by given class name");
+            return SimpleWekaCode.NO_CLASS;
+        }
         else
             return idx;
     }

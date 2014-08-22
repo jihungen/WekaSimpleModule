@@ -64,6 +64,9 @@ public class SimpleWekaStatisticalResult {
         this.fmeasure = new double[noClasses];
     }
 
+    /**
+     * Clears all the objects
+     */
     public void clear() {
         this.resultTable = null;
         this.className = null;
@@ -158,13 +161,12 @@ public class SimpleWekaStatisticalResult {
 
     /**
      * Automatically generated toString method
-     *
      * @return The values of all the members
      */
     @Override
     public String toString() {
         return "SimpleWekaStatisticalResult{" +
-                ", className=" + Arrays.toString(className) +
+                "className=" + Arrays.toString(className) +
                 ", precision=" + Arrays.toString(precision) +
                 ", recall=" + Arrays.toString(recall) +
                 ", fmeasure=" + Arrays.toString(fmeasure) +
