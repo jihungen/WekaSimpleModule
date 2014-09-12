@@ -2,6 +2,7 @@ package hk.ust.ipam.weka.model;
 
 import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
+import hk.ust.ipam.weka.util.SimpleWekaUtil;
 import org.apache.log4j.Logger;
 
 import weka.classifiers.meta.FilteredClassifier;
@@ -51,7 +52,9 @@ public class SimpleWekaModel {
      * @return  whether trains the model successfully or not.
      */
     public boolean trainModel(Instances trainingData, int[] removingIdx) {
-        this.removeIdx(removingIdx);
+        Remove rm = SimpleWekaUtil.removeIdx(removingIdx);
+        if (rm != null)
+            this.classifier.setFilter(rm);
 
         if (trainingData.classIndex() < 0)
             trainingData.setClassIndex(trainingData.numAttributes() - 1);
@@ -129,19 +132,6 @@ public class SimpleWekaModel {
             id = instance.value(idxID);
 
         return new SimpleWekaBinaryResult(idxActual, score, id);
-    }
-
-    /**
-     * Excludes some attributes in training
-     * @param removingIdx   The array of indexes of attributes to be excluded
-     */
-    private void removeIdx(int[] removingIdx) {
-        if (removingIdx == null)
-            return;
-
-        Remove rm = new Remove();
-        rm.setAttributeIndicesArray(removingIdx);
-        this.classifier.setFilter(rm);
     }
 
     /**

@@ -9,7 +9,7 @@ import weka.classifiers.trees.RandomForest;
  * Manages available classifiers in this module
  * Created by jeehoonyoo on 12/8/14.
  */
-public class SimpleWekaClassifier {
+public final class SimpleWekaClassifier {
 
     /**
      * Available classifiers

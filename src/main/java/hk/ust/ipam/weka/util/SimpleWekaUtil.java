@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import weka.core.Attribute;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.filters.unsupervised.attribute.Remove;
 
 import java.io.InputStream;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * Utility static methods
  * Created by jeehoonyoo on 8/8/14.
  */
-public class SimpleWekaUtil {
+public final class SimpleWekaUtil {
     /**
      * Logger
      */
@@ -158,5 +159,37 @@ public class SimpleWekaUtil {
         }
         else
             return idx;
+    }
+
+    /**
+     * Excludes some attributes by filter
+     * @param removingIdx   The array of indexes of attributes to be excluded
+     * @return  Remove object
+     */
+    public static Remove removeIdx(int[] removingIdx) {
+        if (removingIdx == null) {
+            log.info("removing indexs are not set");
+            return null;
+        }
+
+        Remove rm = new Remove();
+        rm.setAttributeIndicesArray(removingIdx);
+
+        return rm;
+    }
+
+    /**
+     *
+     * @param array
+     * @param value
+     * @return
+     */
+    public static boolean include(int[] array, int value) {
+        for (int curr: array) {
+            if (curr == value)
+                return true;
+        }
+
+        return false;
     }
 }
