@@ -16,7 +16,7 @@ public class SimpleWekaInfoResult {
     /**
      * The list of SimpleWeakInfoAttribute
      */
-    List<SimpleWeakInfoAttribute> attributes = null;
+    List<SimpleWeakInfoFeature> attributes = null;
 
     /**
      * Initializes with only data and the indexes to be excluded.
@@ -25,7 +25,7 @@ public class SimpleWekaInfoResult {
      * @param removeIdx The indexes to be excluded
      */
     public SimpleWekaInfoResult(Instances data, int[] removeIdx) {
-        this.attributes = new ArrayList<SimpleWeakInfoAttribute>();
+        this.attributes = new ArrayList<SimpleWeakInfoFeature>();
         for (int i = 0; i < data.numAttributes(); i++) {
             Attribute currAttr = data.attribute(i);
             int currIdx = currAttr.index();
@@ -38,7 +38,7 @@ public class SimpleWekaInfoResult {
             if (SimpleWekaUtil.include(removeIdx, currIdx))
                 continue;
 
-            this.attributes.add(new SimpleWeakInfoAttribute(currIdx, currAttr.name()));
+            this.attributes.add(new SimpleWeakInfoFeature(currIdx, currAttr.name()));
         }
     }
 
@@ -65,7 +65,7 @@ public class SimpleWekaInfoResult {
      * @param infoGain  The information gain to be added
      */
     private void updateInfoGain(int index, double infoGain) {
-        for (SimpleWeakInfoAttribute curr: this.attributes) {
+        for (SimpleWeakInfoFeature curr: this.attributes) {
             if (curr.getIndex() == index) {
                 curr.setInfoGain(infoGain);
                 break;

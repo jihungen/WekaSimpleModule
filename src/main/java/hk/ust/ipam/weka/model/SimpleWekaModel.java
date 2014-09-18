@@ -1,6 +1,6 @@
 package hk.ust.ipam.weka.model;
 
-import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
+import hk.ust.ipam.weka.classification.result.SimpleWekaBinaryResult;
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
 import hk.ust.ipam.weka.util.SimpleWekaUtil;
 import org.apache.log4j.Logger;

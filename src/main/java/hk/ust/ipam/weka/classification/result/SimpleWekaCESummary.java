@@ -1,4 +1,4 @@
-package hk.ust.ipam.weka.result;
+package hk.ust.ipam.weka.classification.result;
 
 import hk.ust.ipam.weka.util.SimpleWekaUtil;
 import org.apache.log4j.Logger;

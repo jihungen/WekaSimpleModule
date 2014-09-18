@@ -1,10 +1,9 @@
-package hk.ust.ipam.weka.info;
+package hk.ust.ipam.weka.feature;
 
 /**
- * Information gain for an attribute
- * Created by jeehoonyoo on 12/9/14.
+ * Created by jeehoonyoo on 18/9/14.
  */
-public class SimpleWeakInfoAttribute {
+public abstract class SimpleWekaFeature {
     /**
      * The index of attribute
      */
@@ -16,16 +15,16 @@ public class SimpleWeakInfoAttribute {
     private String name;
 
     /**
-     * The information gain of attribute
+     * Any value related to attribute
      */
-    private double infoGain;
+    private double value;
 
     /**
      * Initializes with only index and name
      * @param index The index of attribute
      * @param name  The name of attribute
      */
-    public SimpleWeakInfoAttribute(int index, String name) {
+    protected SimpleWekaFeature(int index, String name) {
         this.index = index;
         this.name = name;
     }
@@ -47,19 +46,19 @@ public class SimpleWeakInfoAttribute {
     }
 
     /**
-     * Adds information gain
-     * @param infoGain  The information gain of attribute
+     * Gets the value related to attribute
+     * @return  Any value related to attribute
      */
-    public void setInfoGain(double infoGain) {
-        this.infoGain = infoGain;
+    protected double getValue() {
+        return value;
     }
 
     /**
-     * Gets information gain
-     * @return  The information gain of attribute
+     * Sets the value related to attribute
+     * @param value Any value related to attribute
      */
-    public double getInfoGain() {
-        return infoGain;
+    protected void setValue(double value) {
+        this.value = value;
     }
 
     /**
@@ -68,10 +67,6 @@ public class SimpleWeakInfoAttribute {
      */
     @Override
     public String toString() {
-        return "SimpleWeakInfoAttribute{" +
-                "index=" + index +
-                ", name='" + name + '\'' +
-                ", infoGain=" + infoGain +
-                '}';
+        return index + "," + name + "," + value;
     }
 }

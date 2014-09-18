@@ -1,7 +1,7 @@
 package hk.ust.ipam.weka.util;
 
 import hk.ust.ipam.weka.code.SimpleWekaCode;
-import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
+import hk.ust.ipam.weka.classification.result.SimpleWekaBinaryResult;
 import org.apache.log4j.Logger;
 import weka.core.Attribute;
 import weka.core.Instances;
@@ -137,6 +137,22 @@ public final class SimpleWekaUtil {
         }
 
         return noTargets;
+    }
+
+    /**
+     * Finds the index of class in class attribute by name
+     * @param data    Target instances
+     * @param className The name of class
+     * @return  The index of class
+     */
+    public static int findTargetClassIdx(Instances data, String className) {
+        Attribute classAttribute = data.classAttribute();
+        if (classAttribute == null) {
+            log.error("cannot find the class by given class name");
+            return SimpleWekaCode.NO_CLASS;
+        }
+
+        return findTargetClassIdx(classAttribute, className);
     }
 
     /**
