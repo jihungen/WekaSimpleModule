@@ -9,6 +9,7 @@ import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.unsupervised.attribute.Remove;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -207,5 +208,47 @@ public final class SimpleWekaUtil {
         }
 
         return false;
+    }
+
+    /**
+     *
+     * @param minIdx
+     * @param maxIdx
+     * @return
+     */
+    public static int getRandomIdx(int minIdx, int maxIdx) {
+        return minIdx + (int)(Math.random() * maxIdx);
+    }
+
+    /**
+     *
+     * @param maxIdx
+     * @return
+     */
+    public static int getRandomIdx(int maxIdx) {
+        return getRandomIdx(0, maxIdx);
+    }
+
+    /**
+     *
+     * @param minIdx
+     * @param maxIdx
+     * @return
+     */
+    public static List<Integer> getRandomIdxList(int minIdx, int maxIdx) {
+        List<Integer> randomIdxList = new ArrayList<Integer>();
+        for (int i = minIdx; i <= maxIdx; i++)
+            randomIdxList.add(i);
+
+        return randomIdxList;
+    }
+
+    /**
+     *
+     * @param maxIdx
+     * @return
+     */
+    public static List<Integer> getRandomIdxList(int maxIdx) {
+        return getRandomIdxList(0, maxIdx);
     }
 }

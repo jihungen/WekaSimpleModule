@@ -135,6 +135,15 @@ public class SimpleWekaModel {
     }
 
     /**
+     *
+     * @param instance
+     * @return
+     */
+    public SimpleWekaBinaryResult classifyInstance(Instance instance) {
+        return classifyInstance(instance, -1);
+    }
+
+    /**
      * Set classifiers by given classifier name
      * @param classifierName    Classifier name to be set to this model
      */

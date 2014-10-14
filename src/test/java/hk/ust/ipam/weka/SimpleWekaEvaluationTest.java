@@ -2,9 +2,9 @@ package hk.ust.ipam.weka;
 
 import hk.ust.ipam.weka.classifier.SimpleWekaClassifier;
 import hk.ust.ipam.weka.evaluation.SimpleWekaEvaluation;
-import hk.ust.ipam.weka.result.SimpleWekaBinaryResult;
-import hk.ust.ipam.weka.result.SimpleWekaCESummary;
-import hk.ust.ipam.weka.result.SimpleWekaStatisticalResult;
+import hk.ust.ipam.weka.classification.result.SimpleWekaBinaryResult;
+import hk.ust.ipam.weka.classification.result.SimpleWekaCESummary;
+import hk.ust.ipam.weka.classification.result.SimpleWekaStatisticalResult;
 import hk.ust.ipam.weka.util.SimpleWekaUtil;
 import org.junit.Test;
 import weka.core.Instances;
